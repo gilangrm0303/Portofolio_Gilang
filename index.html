@@ -1,1 +1,505 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gilang Rizky Maulana | Interactive Portfolio</title>
+    <meta name="description" content="Digital Portfolio Gilang Rizky Maulana - Entrepreneur & Financial Analyst">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309'
+                        },
+                        premium: '#10b981' // Teal-400 equivalent
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020617; /* Slate 950 */
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* 3D Hover & Glow */
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .animate-fade-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb {
+            background: #b45309;
+            border-radius: 10px;
+        }
+
+        /* Gradient Background Blobs */
+        .blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        /* Modal Transitions */
+        #cert-modal {
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+        #cert-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .skill-tag { transition: all 0.3s ease; }
+        .skill-hidden { opacity: 0; transform: scale(0.8); display: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Background Decoration -->
+    <div class="blob top-0 -left-20 animate-pulse"></div>
+    <div class="blob bottom-0 -right-20 animate-pulse" style="background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, rgba(0,0,0,0) 70%);"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center glass-card py-3 px-6 rounded-2xl">
+            <div class="text-gold-500 font-extrabold text-xl tracking-tighter">GRM<span class="text-white">.</span></div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="hover:text-gold-400 transition">Beranda</a>
+                <a href="#about" class="hover:text-gold-400 transition">Profil</a>
+                <a href="#experience" class="hover:text-gold-400 transition">Pengalaman</a>
+                <a href="#skills" class="hover:text-gold-400 transition">Keahlian</a>
+            </div>
+            <a href="https://wa.me/6285137964844" target="_blank" class="bg-gold-600 hover:bg-gold-500 text-white px-5 py-2 rounded-full text-xs font-bold transition-all shadow-lg shadow-gold-900/20">
+                HUBUNGI SAYA
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-4xl w-full text-center">
+            <div class="mb-6 inline-block animate-float">
+                <div class="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-gold-500 p-1 mx-auto overflow-hidden">
+                    <img src="https://ui-avatars.com/api/?name=Gilang+Rizky&background=d97706&color=fff&size=256" alt="Gilang Rizky" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-4 animate-fade-up">
+                Gilang Rizky <span class="text-gold-500">Maulana</span>
+            </h1>
+            <div class="text-xl md:text-2xl font-medium text-slate-400 mb-8 h-8">
+                <span id="typewriter"></span><span class="animate-pulse text-gold-500">|</span>
+            </div>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up delay-1">
+                Seorang profesional proaktif dengan keahlian dalam administrasi, manajemen UMKM, dan analisis keuangan. Berkomitmen untuk memberikan hasil kerja yang presisi dan bernilai tambah bagi organisasi.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-up delay-2">
+                <a href="mailto:gilangrm0303@gmail.com" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 px-6 py-3 rounded-xl transition">
+                    <i class="fa-solid fa-envelope text-gold-500"></i> gilangrm0303@gmail.com
+                </a>
+                <div class="flex items-center gap-2 bg-slate-800 px-6 py-3 rounded-xl">
+                    <i class="fa-solid fa-location-dot text-gold-500"></i> Kab. Serang, Banten
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats/About Summary -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-8 rounded-3xl text-center">
+                <div class="text-gold-500 text-3xl mb-2 font-bold">3+ Tahun</div>
+                <div class="text-slate-400 text-sm">Pengalaman Bisnis Mandiri</div>
+            </div>
+            <div class="glass-card p-8 rounded-3xl text-center border-t-2 border-t-gold-500">
+                <div class="text-gold-500 text-3xl mb-2 font-bold">IPA Graduate</div>
+                <div class="text-slate-400 text-sm">SMA Muhammadiyah 08 Ciputat</div>
+            </div>
+            <div class="glass-card p-8 rounded-3xl text-center">
+                <div class="text-gold-500 text-3xl mb-2 font-bold">90/100</div>
+                <div class="text-slate-400 text-sm">Emotional Intelligence Score</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience" class="py-20 px-6 bg-slate-900/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Pengalaman <span class="text-gold-500">Profesional</span></h2>
+            
+            <div class="space-y-8">
+                <!-- Exp 1 -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col md:flex-row gap-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition text-6xl">
+                        <i class="fa-solid fa-shop"></i>
+                    </div>
+                    <div class="md:w-1/4">
+                        <span class="text-gold-500 font-bold">2021 - Sekarang</span>
+                        <h4 class="text-xl font-bold mt-1">Pemilik Usaha</h4>
+                        <p class="text-slate-500 text-sm italic">Rujak Cireng Independent</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="space-y-3 text-slate-300 text-sm md:text-base">
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Mengelola operasional harian, produksi, dan kontrol kualitas bahan baku secara mandiri.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Merancang strategi pemasaran media sosial dan menjaga loyalitas pelanggan.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Mencatat laporan arus kas (pemasukan/pengeluaran) dengan presisi 100%.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exp 2 -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col md:flex-row gap-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition text-6xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="md:w-1/4">
+                        <span class="text-gold-500 font-bold">2018</span>
+                        <h4 class="text-xl font-bold mt-1">Analisis Keuangan</h4>
+                        <p class="text-slate-500 text-sm italic">Proyek Analisis Mandiri</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="space-y-3 text-slate-300 text-sm md:text-base">
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Menganalisis kelayakan investasi menggunakan parameter NPV, IRR, dan Payback Period.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Menyusun laporan risiko dan peluang bisnis secara sistematis untuk pengambilan keputusan.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exp 3 -->
+                <div class="glass-card p-8 rounded-3xl flex flex-col md:flex-row gap-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition text-6xl">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <div class="md:w-1/4">
+                        <span class="text-gold-500 font-bold">2018</span>
+                        <h4 class="text-xl font-bold mt-1">Ketua Proyek</h4>
+                        <p class="text-slate-500 text-sm italic">Business Project & Bazaar</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="space-y-3 text-slate-300 text-sm md:text-base">
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Memimpin koordinasi tim divisi stok, operasional, dan pemasaran.</li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check-circle text-premium mt-1"></i> Bertanggung jawab atas pencatatan akhir laba/rugi acara bazar sekolah.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Lisensi & <span class="text-gold-500">Sertifikasi</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cert 1 -->
+                <div class="glass-card p-6 rounded-2xl cursor-pointer hover:border-premium/50 transition" onclick="openCert('Google Analytics', 'Google', '2026', 'Menganalisis traffic web dan perilaku pengguna menggunakan platform Google Analytics secara profesional.')">
+                    <div class="bg-premium/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-premium">
+                        <i class="fa-solid fa-chart-pie text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-lg leading-tight mb-2">Google Analytics Certification</h4>
+                    <p class="text-slate-500 text-xs">Google • 2026 (Exp 2027)</p>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="glass-card p-6 rounded-2xl cursor-pointer hover:border-premium/50 transition" onclick="openCert('AI-Powered Ads', 'Google', '2026', 'Optimalisasi iklan digital berbasis kecerdasan buatan untuk hasil konversi maksimal.')">
+                    <div class="bg-premium/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-premium">
+                        <i class="fa-solid fa-robot text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-lg leading-tight mb-2">AI-Powered Shopping Ads</h4>
+                    <p class="text-slate-500 text-xs">Google • 2026</p>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="glass-card p-6 rounded-2xl cursor-pointer hover:border-premium/50 transition" onclick="openCert('Emotional Intelligence', 'Kemnaker RI', '2026', 'Keahlian dalam manajemen emosi diri, empati, dan kepemimpinan interpersonal dengan skor 90.')">
+                    <div class="bg-gold-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-gold-500">
+                        <i class="fa-solid fa-brain text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-lg leading-tight mb-2">Essential Skills: EI</h4>
+                    <p class="text-slate-500 text-xs">Kemnaker RI • Score: 90</p>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="glass-card p-6 rounded-2xl cursor-pointer hover:border-premium/50 transition" onclick="openCert('Administrasi Gudang', 'BPVP Sidoarjo', '2026', 'Pengelolaan inventaris, logistik, dan pencatatan pergudangan secara standar industri.')">
+                    <div class="bg-slate-700 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-slate-300">
+                        <i class="fa-solid fa-warehouse text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-lg leading-tight mb-2">Administrasi Pergudangan</h4>
+                    <p class="text-slate-500 text-xs">BPVP Sidoarjo • 2026</p>
+                </div>
+
+                <!-- Cert 5 -->
+                <div class="glass-card p-6 rounded-2xl cursor-pointer hover:border-premium/50 transition" onclick="openCert('Customer Experience', 'HP LIFE', '2026', 'Meningkatkan kepuasan pelanggan melalui perjalanan pengguna yang mulus.')">
+                    <div class="bg-premium/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-premium">
+                        <i class="fa-solid fa-smile text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-lg leading-tight mb-2">Customer Experience (CX)</h4>
+                    <p class="text-slate-500 text-xs">HP LIFE • 2026</p>
+                </div>
+
+                <!-- Cert 6 -->
+                <div class="glass-card p-6 rounded-2xl cursor-pointer hover:border-premium/50 transition" onclick="openCert('Business Email', 'HP Foundation', '2026', 'Komunikasi profesional melalui email untuk kebutuhan bisnis dan korporat.')">
+                    <div class="bg-slate-700 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-slate-300">
+                        <i class="fa-solid fa-envelope-open-text text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-lg leading-tight mb-2">Business Email Expert</h4>
+                    <p class="text-slate-500 text-xs">HP LIFE • 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section with Filter -->
+    <section id="skills" class="py-20 px-6 bg-slate-900/30">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Keahlian & <span class="text-gold-500">Kompetensi</span></h2>
+            
+            <!-- Filter Tabs -->
+            <div class="flex justify-center mb-12 gap-2">
+                <button onclick="filterSkills('all')" class="skill-btn active px-6 py-2 rounded-full border border-gold-500/30 bg-gold-500 text-black font-bold text-sm transition">All</button>
+                <button onclick="filterSkills('hard')" class="skill-btn px-6 py-2 rounded-full border border-slate-700 bg-slate-800 hover:border-gold-500/50 text-sm transition">Hard Skills</button>
+                <button onclick="filterSkills('soft')" class="skill-btn px-6 py-2 rounded-full border border-slate-700 bg-slate-800 hover:border-gold-500/50 text-sm transition">Soft Skills</button>
+            </div>
+
+            <div id="skills-container" class="flex flex-wrap justify-center gap-4">
+                <!-- Hard Skills -->
+                <div class="skill-tag" data-cat="hard">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-gold-500">
+                        <i class="fa-solid fa-file-invoice text-gold-500"></i> Administrasi Dokumen
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="hard">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-gold-500">
+                        <i class="fa-brands fa-microsoft text-gold-500"></i> MS Office Suite
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="hard">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-gold-500">
+                        <i class="fa-solid fa-calculator text-gold-500"></i> Analisis NPV/IRR
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="hard">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-gold-500">
+                        <i class="fa-brands fa-google text-gold-500"></i> Google Workspace
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="hard">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-gold-500">
+                        <i class="fa-solid fa-headset text-gold-500"></i> Customer Service
+                    </span>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-tag" data-cat="soft">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-premium">
+                        <i class="fa-solid fa-comments text-premium"></i> Komunikasi Efektif
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="soft">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-premium">
+                        <i class="fa-solid fa-users text-premium"></i> Leadership
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="soft">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-premium">
+                        <i class="fa-solid fa-magnifying-glass text-premium"></i> Ketelitian Tinggi
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="soft">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-premium">
+                        <i class="fa-solid fa-clock text-premium"></i> Manajemen Waktu
+                    </span>
+                </div>
+                <div class="skill-tag" data-cat="soft">
+                    <span class="px-5 py-3 glass-card rounded-xl flex items-center gap-2 font-medium border-l-4 border-l-premium">
+                        <i class="fa-solid fa-bolt text-premium"></i> Cepat Belajar
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer class="py-20 px-6 border-t border-slate-900">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Mari <span class="text-gold-500">Bekerjasama</span></h2>
+                <p class="text-slate-400">Terbuka untuk peluang karir di bidang Administrasi, Finance, dan Marketing.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="https://wa.me/6285137964844" class="w-14 h-14 bg-gold-600 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition shadow-lg shadow-gold-900/40">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="mailto:gilangrm0303@gmail.com" class="w-14 h-14 bg-slate-800 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition border border-slate-700">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:085137964844" class="w-14 h-14 bg-slate-800 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition border border-slate-700">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+        </div>
+        <div class="mt-20 text-center text-slate-600 text-sm">
+            &copy; 2024 Gilang Rizky Maulana. All Rights Reserved. Designed with Excellence.
+        </div>
+    </footer>
+
+    <!-- Certificate Modal -->
+    <div id="cert-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-6">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeCert()"></div>
+        <div class="glass-card max-w-lg w-full p-8 rounded-3xl relative z-10 border-gold-500/30">
+            <button onclick="closeCert()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            <div id="modal-content">
+                <div class="bg-gold-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 text-gold-500">
+                    <i class="fa-solid fa-certificate text-3xl"></i>
+                </div>
+                <h3 id="m-title" class="text-2xl font-bold mb-2">Judul Sertifikat</h3>
+                <p id="m-org" class="text-gold-500 font-medium mb-4 text-sm tracking-widest uppercase">Lembaga Penerbit</p>
+                <div class="h-px w-full bg-slate-800 mb-6"></div>
+                <p id="m-desc" class="text-slate-400 leading-relaxed mb-6">Deskripsi keahlian yang divalidasi oleh sertifikat ini.</p>
+                <button onclick="closeCert()" class="w-full bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold transition">Tutup Detail</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 1. Typewriter Effect
+        const text = "Entrepreneur | Financial Analyst | Marketing Strategist";
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    document.getElementById("typewriter").innerHTML = "";
+                    index = 0;
+                    typeWriter();
+                }, 3000);
+            }
+        }
+        window.onload = typeWriter;
+
+        // 2. Skill Filtering
+        function filterSkills(category) {
+            const tags = document.querySelectorAll('.skill-tag');
+            const btns = document.querySelectorAll('.skill-btn');
+
+            // Toggle Button Class
+            btns.forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-black', 'font-bold');
+                btn.classList.add('bg-slate-800', 'text-white');
+            });
+            event.currentTarget.classList.add('bg-gold-500', 'text-black', 'font-bold');
+            event.currentTarget.classList.remove('bg-slate-800', 'text-white');
+
+            tags.forEach(tag => {
+                tag.style.opacity = '0';
+                tag.style.transform = 'scale(0.8)';
+                
+                setTimeout(() => {
+                    if (category === 'all' || tag.getAttribute('data-cat') === category) {
+                        tag.style.display = 'block';
+                        setTimeout(() => {
+                            tag.style.opacity = '1';
+                            tag.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        tag.style.display = 'none';
+                    }
+                }, 300);
+            });
+        }
+
+        // 3. Modal Logic
+        const modal = document.getElementById('cert-modal');
+        function openCert(title, org, year, desc) {
+            document.getElementById('m-title').innerText = title;
+            document.getElementById('m-org').innerText = org + ' • ' + year;
+            document.getElementById('m-desc').innerText = desc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCert() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 4. Reveal Animations on Scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
