@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gilang Rizky Maulana | Portfolio</title>
+    <meta name="description" content="Portfolio Profesional Gilang Rizky Maulana - Business Operations & Financial Analytics">
     
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
-            --bg-color: #f8fafc; /* Slate-50 */
-            --card-bg: #ffffff;
-            --text-main: #0f172a; /* Slate-900 */
-            --text-muted: #64748b; /* Slate-500 */
-            --border-color: #e2e8f0; /* Slate-200 */
-            --accent: #1e293b;
+            --bg-color: #f1f5f9; /* Slate 100 - Abu-abu semen pucat */
+            --card-bg: #ffffff; /* Putih Porselen */
+            --text-main: #1e293b; /* Slate 800 - Kelabu Gelap */
+            --text-muted: #64748b; /* Slate 500 */
+            --accent: #475569; /* Slate 600 */
+            --border: #e2e8f0; /* Slate 200 */
+            --radius: 16px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -32,437 +34,435 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 2rem;
+            overflow-x: hidden;
         }
 
-        /* Header & Monogram */
-        header {
-            max-width: 1200px;
-            margin: 0 auto 3rem auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
         }
 
-        .monogram {
-            width: 45px;
-            height: 45px;
-            background: var(--text-main);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border-radius: 4px;
-        }
-
-        .contact-pills {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .pill {
-            text-decoration: none;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .pill:hover {
-            background: var(--text-main);
-            color: white;
-        }
-
-        /* Main Bento Layout */
+        /* --- Bento Grid Layout --- */
         .bento-grid {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: minmax(180px, auto);
-            gap: 1.5rem;
+            grid-auto-rows: minmax(160px, auto);
+            gap: 20px;
         }
 
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: var(--transition);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border-color: #cbd5e1;
-        }
-
-        /* Hero Card (Large) */
-        .hero-card {
-            grid-column: span 2;
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .hero-card h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
         }
 
-        .typewriter-container {
+        /* --- Specific Card Spans --- */
+        .hero-card {
+            grid-column: span 2;
+            grid-row: span 2;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .profile-card {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .wide-card {
+            grid-column: span 3;
+        }
+
+        .cert-card {
+            cursor: pointer;
+            text-align: left;
+            padding: 20px;
+        }
+
+        /* --- Typography --- */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .typewriter {
             font-size: 1.1rem;
             color: var(--text-muted);
-            height: 1.5rem;
+            min-height: 1.5em;
+            font-weight: 500;
         }
 
-        /* Info Card */
-        .info-card {
-            grid-column: span 1;
-            background: var(--text-main);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .info-card p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Experience Boxes (3 Berjejer) */
-        .experience-card {
-            grid-column: span 1;
-        }
-
-        .tag {
-            font-size: 0.7rem;
+        h2.section-title {
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             color: var(--text-muted);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2.section-title::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        /* --- Experience Section --- */
+        .exp-title {
             font-weight: 700;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .exp-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
             display: block;
         }
 
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .exp-desc {
+            font-size: 0.9rem;
+            color: var(--accent);
         }
 
-        .card-body {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Skills Card (Filterable) */
-        .skills-card {
-            grid-column: span 2;
-        }
-
+        /* --- Skills Filter --- */
         .filter-container {
-            margin: 1rem 0;
+            margin-bottom: 20px;
             display: flex;
-            gap: 0.5rem;
+            gap: 10px;
         }
 
         .filter-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.8rem;
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
             cursor: pointer;
             font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
             transition: var(--transition);
         }
 
         .filter-btn.active {
             background: var(--text-main);
             color: white;
+            border-color: var(--text-main);
         }
 
-        .skill-tags {
+        .skills-wrapper {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 10px;
         }
 
         .skill-tag {
-            background: #f1f5f9;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        /* Certifications Card */
-        .cert-grid {
-            grid-column: span 3;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-
-        .cert-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .cert-item:hover {
+            padding: 6px 14px;
             background: #f8fafc;
-            transform: translateY(-3px);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: var(--transition);
         }
 
-        .cert-year {
-            font-size: 0.7rem;
-            color: var(--text-muted);
+        /* --- Buttons --- */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
         }
 
-        /* Modal Styles */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #000;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-color);
+        }
+
+        /* --- Modal --- */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.3);
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(4px);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .modal {
+        .modal-content {
             background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 40px;
+            border-radius: 24px;
             max-width: 500px;
-            width: 100%;
+            width: 90%;
             position: relative;
             transform: scale(0.9);
-            transition: var(--transition);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
         }
 
-        .modal.active {
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-overlay.active .modal-content {
             transform: scale(1);
         }
 
         .close-modal {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            cursor: pointer;
-            font-size: 1.2rem;
-            border: none;
+            top: 20px;
+            right: 20px;
             background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
         }
 
-        /* Responsive */
+        /* --- Responsive --- */
         @media (max-width: 1024px) {
             .bento-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .cert-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-column: span 2;
-            }
+            .hero-card { grid-column: span 2; }
+            .wide-card { grid-column: span 2; }
         }
 
         @media (max-width: 768px) {
-            body { padding: 1rem; }
-            header { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .hero-card, .info-card, .experience-card, .skills-card, .cert-grid {
+            .container { margin: 20px auto; }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-card, .profile-card, .wide-card {
                 grid-column: span 1;
             }
-            .cert-grid { grid-template-columns: 1fr; }
-            .hero-card h1 { font-size: 1.8rem; }
+            h1 { font-size: 2.2rem; }
         }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="monogram">Gilang Rizky Maulana</div>
-        <div class="contact-pills">
-            <a href="mailto:gilangrm0303@gmail.com" class="pill">Email</a>
-            <a href="https://wa.me/6285137964844" class="pill">WhatsApp</a>
-        </div>
-    </header>
+    <div class="container">
+        <main class="bento-grid">
+            
+            <!-- Hero Card -->
+            <section class="card hero-card">
+                <h2 class="section-title">Professional Profile</h2>
+                <h1>Gilang Rizky Maulana</h1>
+                <div class="typewriter" id="typewriter"></div>
+                
+                <div class="btn-group">
+                    <a href="mailto:gilangrm0303@gmail.com" class="btn btn-primary">
+                        Email Me
+                    </a>
+                    <a href="https://wa.me/6285137964844" target="_blank" class="btn btn-secondary">
+                        WhatsApp
+                    </a>
+                </div>
+            </section>
 
-    <div class="bento-grid">
-        <!-- Hero Section -->
-        <div class="card hero-card">
-            <span class="tag">Portfolio Personal</span>
-            <h1>Gilang Rizky Maulana</h1>
-            <div class="typewriter-container" id="typewriter"></div>
-        </div>
+            <!-- Profile Info Card -->
+            <section class="card profile-card">
+                <h2 class="section-title">About Me</h2>
+                <p class="exp-desc" style="font-size: 0.95rem; line-height: 1.7;">
+                    Lulusan SMA Muhammadiyah 08 Ciputat yang proaktif. Berpengalaman dalam memimpin proyek bisnis, analisis data finansial, dan manajemen operasional usaha kuliner mandiri sejak 2021.
+                </p>
+                <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
+                    📍 Kabupaten Serang, Banten
+                </div>
+            </section>
 
-        <!-- Brief Profile -->
-        <div class="card info-card">
-            <span class="tag" style="color: rgba(255,255,255,0.6)">Tentang Saya</span>
-            <p>Lulusan IPA SMA Muhammadiyah 08 Ciputat yang proaktif. Berpengalaman dalam memimpin bisnis kuliner, analisis finansial, dan operasional ritel sejak 2021.</p>
-            <div style="font-size: 0.75rem; margin-top: 1rem;">📍 Serang, Banten</div>
-        </div>
+            <!-- Experience Section -->
+            <div class="wide-card"><h2 class="section-title">Work Experience</h2></div>
+            
+            <section class="card">
+                <span class="exp-date">2021 - Sekarang</span>
+                <h3 class="exp-title">Pemilik Usaha</h3>
+                <p class="exp-desc">Rujak Cireng: Mengelola operasional produksi, kontrol kualitas, pembukuan kas, dan pemasaran media sosial.</p>
+            </section>
 
-        <!-- Experience 1 -->
-        <div class="card experience-card">
-            <span class="tag">2021 - Sekarang</span>
-            <div class="card-title">Pemilik Rujak Cireng</div>
-            <p class="card-body">Mengelola operasional harian, kontrol kualitas produk, pemasaran digital, dan pembukuan arus kas usaha secara mandiri.</p>
-        </div>
+            <section class="card">
+                <span class="exp-date">2018</span>
+                <h3 class="exp-title">Analisis Keuangan</h3>
+                <p class="exp-desc">Menganalisis risiko investasi menggunakan metode NPV, IRR, dan Payback Period untuk proyek bisnis.</p>
+            </section>
 
-        <!-- Experience 2 -->
-        <div class="card experience-card">
-            <span class="tag">2018</span>
-            <div class="card-title">Analisis Keuangan</div>
-            <p class="card-body">Menganalisis kelayakan investasi menggunakan metode NPV, IRR, dan Payback Period untuk proyek bisnis strategis.</p>
-        </div>
+            <section class="card">
+                <span class="exp-date">2018</span>
+                <h3 class="exp-title">Ketua Proyek Bisnis</h3>
+                <p class="exp-desc">Memimpin koordinasi tim lintas divisi dalam Bazar Sekolah dan manajemen stok barang dagangan.</p>
+            </section>
 
-        <!-- Experience 3 -->
-        <div class="card experience-card">
-            <span class="tag">Organisasi</span>
-            <div class="card-title">Ketua Proyek Bisnis</div>
-            <p class="card-body">Memimpin koordinasi tim lintas divisi dalam bazar sekolah, manajemen stok barang, dan pelaporan laba rugi.</p>
-        </div>
+            <!-- Skills Section -->
+            <section class="card wide-card">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="hard">Hard Skills</button>
+                    <button class="filter-btn" data-filter="soft">Soft Skills</button>
+                </div>
+                <div class="skills-wrapper" id="skills-list">
+                    <!-- Hard Skills -->
+                    <span class="skill-tag" data-cat="hard">Administrasi Dokumen</span>
+                    <span class="skill-tag" data-cat="hard">Microsoft Office</span>
+                    <span class="skill-tag" data-cat="hard">Google Workspace</span>
+                    <span class="skill-tag" data-cat="hard">Analisis Bisnis</span>
+                    <span class="skill-tag" data-cat="hard">Financial Analytics</span>
+                    <span class="skill-tag" data-cat="hard">Pelayanan Pelanggan</span>
+                    <!-- Soft Skills -->
+                    <span class="skill-tag" data-cat="soft">Komunikasi & Presentasi</span>
+                    <span class="skill-tag" data-cat="soft">Kepemimpinan</span>
+                    <span class="skill-tag" data-cat="soft">Manajemen Waktu</span>
+                    <span class="skill-tag" data-cat="soft">Kerja Sama Tim</span>
+                    <span class="skill-tag" data-cat="soft">Ketelitian Detail</span>
+                </div>
+            </section>
 
-        <!-- Skills Section -->
-        <div class="card skills-card">
-            <span class="tag">Keahlian & Kompetensi</span>
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterSkills('all')">Semua</button>
-                <button class="filter-btn" onclick="filterSkills('hard')">Hard Skills</button>
-                <button class="filter-btn" onclick="filterSkills('soft')">Soft Skills</button>
-            </div>
-            <div class="skill-tags" id="skill-container">
-                <!-- Hard Skills -->
-                <span class="skill-tag" data-type="hard">Microsoft Office</span>
-                <span class="skill-tag" data-type="hard">Google Workspace</span>
-                <span class="skill-tag" data-type="hard">Administrasi Dokumen</span>
-                <span class="skill-tag" data-type="hard">Analisis Finansial</span>
-                <span class="skill-tag" data-type="hard">Pergudangan</span>
-                <span class="skill-tag" data-type="hard">Google Analytics</span>
-                <!-- Soft Skills -->
-                <span class="skill-tag" data-type="soft">Kepemimpinan</span>
-                <span class="skill-tag" data-type="soft">Komunikasi Publik</span>
-                <span class="skill-tag" data-type="soft">Manajemen Waktu</span>
-                <span class="skill-tag" data-type="soft">Ketelitian</span>
-                <span class="skill-tag" data-type="soft">Cepat Belajar</span>
-            </div>
-        </div>
+            <!-- Certifications Section -->
+            <div class="wide-card"><h2 class="section-title">Official Certifications</h2></div>
 
-        <!-- Certifications Grid -->
-        <div class="cert-grid">
-            <div class="cert-item" onclick="showModal('Google Analytics', 'Sertifikasi resmi dari Google yang memvalidasi kemampuan dalam pelacakan data web, analisis audiens, dan interpretasi metrik digital untuk pertumbuhan bisnis. Berlaku hingga 2027.')">
-                <span class="cert-year">2026</span>
-                <div class="card-title" style="font-size: 0.9rem;">Google Analytics</div>
-            </div>
-            <div class="cert-item" onclick="showModal('Emotional Intelligence', 'Diterbitkan oleh GNIK & Kemnaker RI dengan Nilai 90. Fokus pada kecerdasan emosional di lingkungan kerja, empati, dan manajemen diri.')">
-                <span class="cert-year">2026</span>
-                <div class="card-title" style="font-size: 0.9rem;">Emotional Intelligence</div>
-            </div>
-            <div class="cert-item" onclick="showModal('Admin Pergudangan', 'Sertifikasi BPVP Sidoarjo (Kemnaker). Kompetensi dalam mengelola dokumentasi penerimaan, pengeluaran, dan perhitungan persediaan barang.')">
-                <span class="cert-year">2026</span>
-                <div class="card-title" style="font-size: 0.9rem;">Admin Pergudangan</div>
-            </div>
-            <div class="cert-item" onclick="showModal('Customer Experience', 'HP LIFE Certification. Fokus pada strategi Customer Centricity, pemetaan perjalanan pelanggan, dan kepuasan konsumen untuk kesuksesan bisnis.')">
-                <span class="cert-year">2026</span>
-                <div class="card-title" style="font-size: 0.9rem;">Customer Experience</div>
-            </div>
-        </div>
+            <section class="card cert-card" onclick="openModal('Google Analytics & Ads', 'Sertifikasi resmi dari Google yang mencakup analisis data web dan optimalisasi iklan belanja berbasis AI. Berlaku hingga Mei 2027.')">
+                <h3 class="exp-title">Google Analytics & AI-Ads</h3>
+                <p class="exp-desc" style="font-size: 0.8rem;">Google Certified • 2026</p>
+            </section>
+
+            <section class="card cert-card" onclick="openModal('Emotional Intelligence', 'Pemberian dari GNIK & Kemnaker RI dengan nilai 90. Fokus pada pengendalian emosi dalam lingkungan profesional.')">
+                <h3 class="exp-title">Emotional Intelligence</h3>
+                <p class="exp-desc" style="font-size: 0.8rem;">GNIK & Kemnaker • 2026</p>
+            </section>
+
+            <section class="card cert-card" onclick="openModal('Pergudangan', 'Sertifikasi kompetensi dari BPVP Sidoarjo dalam mengelola administrasi logistik dan stok pergudangan secara sistematis.')">
+                <h3 class="exp-title">Adm. Pergudangan</h3>
+                <p class="exp-desc" style="font-size: 0.8rem;">Kemnaker RI • 2026</p>
+            </section>
+
+            <section class="card cert-card" onclick="openModal('Customer Experience', 'Sertifikasi HP LIFE mencakup strategi customer centricity dan komunikasi email bisnis yang efektif.')">
+                <h3 class="exp-title">CX & Business Email</h3>
+                <p class="exp-desc" style="font-size: 0.8rem;">HP Foundation • 2026</p>
+            </section>
+
+        </main>
+
+        <footer style="margin-top: 60px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            &copy; 2026 Gilang Rizky Maulana. Designed for Professionalism.
+        </footer>
     </div>
 
-    <!-- Modal Element -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modalContent">
-            <button class="close-modal" onclick="closeModal()">✕</button>
-            <span class="tag" id="modalTag">Detail Sertifikasi</span>
-            <h2 id="modalTitle" style="margin: 1rem 0;"></h2>
-            <p id="modalDescription" style="color: var(--text-muted); font-size: 0.95rem;"></p>
+    <!-- Modal Structure -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle" style="margin-bottom: 15px;">Detail Sertifikasi</h2>
+            <p id="modalDesc" style="color: var(--accent); line-height: 1.8;"></p>
         </div>
     </div>
 
     <script>
-        // 1. Typewriter Effect
+        // --- Typewriter Effect ---
         const text = "Business Operations | Financial & Data Analytics | Certified Digital Marketer";
-        let index = 0;
+        let i = 0;
         function typeWriter() {
-            if (index < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(index);
-                index++;
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
                 setTimeout(typeWriter, 50);
             }
         }
         window.onload = typeWriter;
 
-        // 2. Skill Filter Logic
-        function filterSkills(category) {
-            const tags = document.querySelectorAll('.skill-tag');
-            const btns = document.querySelectorAll('.filter-btn');
-            
-            // Toggle active button
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            tags.forEach(tag => {
-                tag.style.opacity = '0';
-                setTimeout(() => {
-                    if (category === 'all' || tag.getAttribute('data-type') === category) {
-                        tag.style.display = 'block';
-                        setTimeout(() => tag.style.opacity = '1', 50);
-                    } else {
-                        tag.style.display = 'none';
-                    }
-                }, 200);
-            });
-        }
-
-        // 3. Modal Logic
-        const overlay = document.getElementById('modalOverlay');
-        const modal = document.getElementById('modalContent');
-
-        function showModal(title, desc) {
+        // --- Modal Logic ---
+        function openModal(title, desc) {
+            const modal = document.getElementById('modalOverlay');
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDescription').innerText = desc;
-            overlay.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('active');
-            }, 10);
+            document.getElementById('modalDesc').innerText = desc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
+            const modal = document.getElementById('modalOverlay');
             modal.classList.remove('active');
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 300);
+            document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) closeModal();
+        // --- Filter Logic ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const skillTags = document.querySelectorAll('.skill-tag');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Change Active Class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                skillTags.forEach(tag => {
+                    tag.style.opacity = '0';
+                    setTimeout(() => {
+                        if (filter === 'all' || tag.getAttribute('data-cat') === filter) {
+                            tag.classList.remove('hidden');
+                            tag.style.opacity = '1';
+                        } else {
+                            tag.classList.add('hidden');
+                        }
+                    }, 200);
+                });
+            });
         });
     </script>
 </body>
