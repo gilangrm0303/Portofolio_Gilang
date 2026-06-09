@@ -3,427 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gilang Rizky Maulana | Portfolio Hub</title>
+    <title>Gilang Rizky Maulana | Portfolio</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS for Base & Utilities -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        obsidian: '#020617',
-                        gold: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        body {
-            background-color: #020617;
-            color: #f1f5f9;
-            overflow-x: hidden;
+        :root {
+            --bg-color: #f8fafc; /* Slate-50 */
+            --card-bg: #ffffff;
+            --text-main: #0f172a; /* Slate-900 */
+            --text-muted: #64748b; /* Slate-500 */
+            --border-color: #e2e8f0; /* Slate-200 */
+            --accent: #1e293b;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .bento-card {
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(30, 41, 59, 0.5);
-            border-radius: 2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        /* Header & Monogram */
+        header {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .monogram {
+            width: 45px;
+            height: 45px;
+            background: var(--text-main);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 4px;
+        }
+
+        .contact-pills {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .pill {
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .pill:hover {
+            background: var(--text-main);
+            color: white;
+        }
+
+        /* Main Bento Layout */
+        .bento-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
             overflow: hidden;
         }
 
-        .bento-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(245, 158, 11, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.1);
+        .card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-color: #cbd5e1;
         }
 
-        /* Typewriter Cursor */
-        #typewriter::after {
-            content: "|";
-            animation: blink 0.7s infinite;
-            color: #f59e0b;
+        /* Hero Card (Large) */
+        .hero-card {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        @keyframes blink {
-            50% { opacity: 0; }
+        .hero-card h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .typewriter-container {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            height: 1.5rem;
+        }
+
+        /* Info Card */
+        .info-card {
+            grid-column: span 1;
+            background: var(--text-main);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Experience Boxes (3 Berjejer) */
+        .experience-card {
+            grid-column: span 1;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Skills Card (Filterable) */
+        .skills-card {
+            grid-column: span 2;
+        }
+
+        .filter-container {
+            margin: 1rem 0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background: var(--text-main);
+            color: white;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
         }
 
         .skill-tag {
-            transition: all 0.3s ease;
+            background: #f1f5f9;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
         }
 
-        .modal-active {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: scale(1) !important;
+        /* Certifications Card */
+        .cert-grid {
+            grid-column: span 3;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
+        .cert-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cert-item:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+        }
+
+        .cert-year {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            transition: var(--transition);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+        }
+
+        .modal.active {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border: none;
+            background: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            header { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .hero-card, .info-card, .experience-card, .skills-card, .cert-grid {
+                grid-column: span 1;
+            }
+            .cert-grid { grid-template-columns: 1fr; }
+            .hero-card h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <div class="max-w-7xl mx-auto">
-        <!-- Header & Monogram -->
-        <header class="flex justify-between items-center mb-8 px-4">
-            <div class="text-slate-400 font-medium tracking-widest text-sm uppercase">Official Portfolio</div>
-            <div class="w-12 h-12 flex items-center justify-center">
-                <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100" height="100" rx="20" fill="url(#grad)" fill-opacity="0.1"/>
-                    <path d="M25 70V30L50 55L75 30V70" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M25 50H75" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
-                        <linearGradient id="grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#f59e0b"/>
-                            <stop offset="1" stop-color="#fbbf24"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
-        </header>
+    <header>
+        <div class="monogram">MG</div>
+        <div class="contact-pills">
+            <a href="mailto:gilangrm0303@gmail.com" class="pill">Email</a>
+            <a href="https://wa.me/6285137964844" class="pill">WhatsApp</a>
+        </div>
+    </header>
 
-        <!-- Bento Grid Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            
-            <!-- Main Hero Box -->
-            <div class="bento-card col-span-1 md:col-span-4 p-8 flex flex-col justify-center min-h-[300px] relative overflow-hidden group">
-                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-gold-500/10 blur-[80px] rounded-full group-hover:bg-gold-500/20 transition-all duration-700"></div>
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-white via-slate-200 to-slate-500 bg-clip-text text-transparent">
-                    Gilang Rizky Maulana
-                </h1>
-                <div class="text-xl md:text-2xl text-gold-400 font-medium h-8" id="typewriter"></div>
-                <p class="text-slate-400 mt-6 max-w-2xl leading-relaxed">
-                    Lulusan IPA yang proaktif dan teliti. Expert dalam administrasi, manajemen operasional UMKM, dan analisis finansial berbasis data. Memiliki rekam jejak nyata dalam memimpin proyek bisnis sejak 2018.
-                </p>
-            </div>
-
-            <!-- Profile Info Box -->
-            <div class="bento-card col-span-1 md:col-span-2 p-8 flex flex-col justify-between group">
-                <div>
-                    <h3 class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4">Location & Contact</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-gold-400 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <span class="text-sm font-medium">Kab. Serang, Banten</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-gold-400 group-hover:bg-gold-500 group-hover:text-black transition-colors">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <span class="text-sm font-medium">gilangrm0303@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 flex gap-3">
-                    <a href="mailto:gilangrm0303@gmail.com" class="flex-1 bg-white text-black py-3 rounded-2xl text-center text-xs font-bold hover:bg-gold-400 transition-colors">Email Saya</a>
-                    <a href="https://wa.me/6285137964844" target="_blank" class="flex-1 bg-green-600/20 text-green-400 border border-green-600/30 py-3 rounded-2xl text-center text-xs font-bold hover:bg-green-600 hover:text-white transition-all">WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- Experience Box -->
-            <div class="bento-card col-span-1 md:col-span-3 p-8">
-                <h3 class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
-                    <i class="fa-solid fa-briefcase text-gold-400"></i> Rekam Jejak Pengalaman
-                </h3>
-                <div class="space-y-6">
-                    <div class="border-l-2 border-slate-800 pl-4 py-1 hover:border-gold-500 transition-colors">
-                        <h4 class="font-bold text-white">Pemilik Usaha Rujak Cireng</h4>
-                        <p class="text-xs text-gold-400 mb-2">2021 — Sekarang</p>
-                        <p class="text-sm text-slate-400 leading-relaxed italic">Manajemen operasional, kontrol kualitas, marketing digital & pengelolaan arus kas.</p>
-                    </div>
-                    <div class="border-l-2 border-slate-800 pl-4 py-1 hover:border-gold-500 transition-colors">
-                        <h4 class="font-bold text-white">Analisis Keuangan Proyek</h4>
-                        <p class="text-xs text-gold-400 mb-2">2018</p>
-                        <p class="text-sm text-slate-400 leading-relaxed italic">Metode evaluasi NPV, IRR, dan Payback Period untuk kelayakan investasi bisnis.</p>
-                    </div>
-                    <div class="border-l-2 border-slate-800 pl-4 py-1 hover:border-gold-500 transition-colors">
-                        <h4 class="font-bold text-white">Ketua Proyek Bisnis & Bazaar</h4>
-                        <p class="text-xs text-gold-400 mb-2">2018</p>
-                        <p class="text-sm text-slate-400 leading-relaxed italic">Koordinasi tim lintas divisi, manajemen stok barang, dan rekonsiliasi laba bersih.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills Box with Filtering -->
-            <div class="bento-card col-span-1 md:col-span-3 p-8">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                    <h3 class="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-gold-400"></i> Pemetaan Keahlian
-                    </h3>
-                    <div class="flex bg-slate-900/80 p-1 rounded-xl border border-slate-800">
-                        <button onclick="filterSkills('all')" class="skill-btn active px-4 py-1.5 text-[10px] font-bold rounded-lg transition-all" id="btn-all">ALL</button>
-                        <button onclick="filterSkills('hard')" class="skill-btn px-4 py-1.5 text-[10px] font-bold rounded-lg text-slate-400 transition-all" id="btn-hard">HARD</button>
-                        <button onclick="filterSkills('soft')" class="skill-btn px-4 py-1.5 text-[10px] font-bold rounded-lg text-slate-400 transition-all" id="btn-soft">SOFT</button>
-                    </div>
-                </div>
-                
-                <div class="flex flex-wrap gap-2" id="skill-container">
-                    <!-- Hard Skills -->
-                    <div class="skill-tag hardskill px-4 py-2 bg-slate-800/50 rounded-xl text-xs font-medium border border-slate-700/50 flex items-center gap-2">
-                        <i class="fa-solid fa-file-invoice text-gold-500"></i> Administrasi
-                    </div>
-                    <div class="skill-tag hardskill px-4 py-2 bg-slate-800/50 rounded-xl text-xs font-medium border border-slate-700/50 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-pie text-gold-500"></i> Analisis Finansial
-                    </div>
-                    <div class="skill-tag hardskill px-4 py-2 bg-slate-800/50 rounded-xl text-xs font-medium border border-slate-700/50 flex items-center gap-2">
-                        <i class="fa-brands fa-microsoft text-gold-500"></i> MS Office
-                    </div>
-                    <div class="skill-tag hardskill px-4 py-2 bg-slate-800/50 rounded-xl text-xs font-medium border border-slate-700/50 flex items-center gap-2">
-                        <i class="fa-brands fa-google text-gold-500"></i> Google Workspace
-                    </div>
-                    <div class="skill-tag hardskill px-4 py-2 bg-slate-800/50 rounded-xl text-xs font-medium border border-slate-700/50 flex items-center gap-2">
-                        <i class="fa-solid fa-headset text-gold-500"></i> Customer Service
-                    </div>
-                    <!-- Soft Skills -->
-                    <div class="skill-tag softskill px-4 py-2 bg-amber-500/10 rounded-xl text-xs font-medium border border-amber-500/20 text-amber-200 flex items-center gap-2">
-                        <i class="fa-solid fa-comments"></i> Komunikasi
-                    </div>
-                    <div class="skill-tag softskill px-4 py-2 bg-amber-500/10 rounded-xl text-xs font-medium border border-amber-500/20 text-amber-200 flex items-center gap-2">
-                        <i class="fa-solid fa-users-gear"></i> Kepemimpinan
-                    </div>
-                    <div class="skill-tag softskill px-4 py-2 bg-amber-500/10 rounded-xl text-xs font-medium border border-amber-500/20 text-amber-200 flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i> Ketelitian
-                    </div>
-                    <div class="skill-tag softskill px-4 py-2 bg-amber-500/10 rounded-xl text-xs font-medium border border-amber-500/20 text-amber-200 flex items-center gap-2">
-                        <i class="fa-solid fa-bolt-lightning"></i> Cepat Belajar
-                    </div>
-                </div>
-            </div>
-
-            <!-- Certificates Grid Header -->
-            <div class="col-span-1 md:col-span-4 lg:col-span-6 mt-4">
-                <h3 class="text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 ml-4">
-                    <i class="fa-solid fa-award text-gold-400"></i> Sertifikasi Kompetensi (Update 2026)
-                </h3>
-            </div>
-
-            <!-- Certificate Boxes -->
-            <div onclick="showCert('analytics')" class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-start gap-4 cursor-pointer group hover:bg-slate-800/50">
-                <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-brands fa-google text-2xl"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm leading-tight mb-1">Google Analytics & Shopping Ads</h4>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-tighter italic">Google • Exp May 2027</p>
-                </div>
-            </div>
-
-            <div onclick="showCert('ei')" class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-start gap-4 cursor-pointer group hover:bg-slate-800/50">
-                <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-brain text-2xl"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm leading-tight mb-1">Emotional Intelligence</h4>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-tighter italic">GNIK & KEMNAKER RI • Score: 90</p>
-                </div>
-            </div>
-
-            <div onclick="showCert('warehouse')" class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-start gap-4 cursor-pointer group hover:bg-slate-800/50">
-                <div class="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-warehouse text-2xl"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm leading-tight mb-1">Adm. Pergudangan</h4>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-tighter italic">BPVP Sidoarjo • 2026</p>
-                </div>
-            </div>
-
-            <div onclick="showCert('hp')" class="bento-card col-span-1 md:col-span-2 lg:col-span-3 p-6 flex items-start gap-4 cursor-pointer group hover:bg-slate-800/50">
-                <div class="w-12 h-12 rounded-xl bg-slate-500/10 flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform">
-                    <i class="fa-solid fa-briefcase text-2xl"></i>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm leading-tight mb-1">Customer Experience & Biz Email</h4>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-tighter italic">HP LIFE / HP Foundation • 2026</p>
-                </div>
-            </div>
-
-            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-3 p-6 bg-gold-500 flex items-center justify-center group cursor-default">
-               <span class="text-black font-extrabold italic tracking-widest text-center">SIAP MEMBERIKAN KONTRIBUSI TERBAIK</span>
-            </div>
-
+    <div class="bento-grid">
+        <!-- Hero Section -->
+        <div class="card hero-card">
+            <span class="tag">Portfolio Personal</span>
+            <h1>Gilang Rizky Maulana</h1>
+            <div class="typewriter-container" id="typewriter"></div>
         </div>
 
-        <footer class="mt-12 mb-8 text-center">
-            <p class="text-slate-600 text-xs tracking-widest uppercase">&copy; 2026 Gilang Rizky Maulana. All Rights Reserved.</p>
-        </footer>
+        <!-- Brief Profile -->
+        <div class="card info-card">
+            <span class="tag" style="color: rgba(255,255,255,0.6)">Tentang Saya</span>
+            <p>Lulusan IPA SMA Muhammadiyah 08 Ciputat yang proaktif. Berpengalaman dalam memimpin bisnis kuliner, analisis finansial, dan operasional ritel sejak 2021.</p>
+            <div style="font-size: 0.75rem; margin-top: 1rem;">📍 Serang, Banten</div>
+        </div>
+
+        <!-- Experience 1 -->
+        <div class="card experience-card">
+            <span class="tag">2021 - Sekarang</span>
+            <div class="card-title">Pemilik Rujak Cireng</div>
+            <p class="card-body">Mengelola operasional harian, kontrol kualitas produk, pemasaran digital, dan pembukuan arus kas usaha secara mandiri.</p>
+        </div>
+
+        <!-- Experience 2 -->
+        <div class="card experience-card">
+            <span class="tag">2018</span>
+            <div class="card-title">Analisis Keuangan</div>
+            <p class="card-body">Menganalisis kelayakan investasi menggunakan metode NPV, IRR, dan Payback Period untuk proyek bisnis strategis.</p>
+        </div>
+
+        <!-- Experience 3 -->
+        <div class="card experience-card">
+            <span class="tag">Organisasi</span>
+            <div class="card-title">Ketua Proyek Bisnis</div>
+            <p class="card-body">Memimpin koordinasi tim lintas divisi dalam bazar sekolah, manajemen stok barang, dan pelaporan laba rugi.</p>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="card skills-card">
+            <span class="tag">Keahlian & Kompetensi</span>
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterSkills('all')">Semua</button>
+                <button class="filter-btn" onclick="filterSkills('hard')">Hard Skills</button>
+                <button class="filter-btn" onclick="filterSkills('soft')">Soft Skills</button>
+            </div>
+            <div class="skill-tags" id="skill-container">
+                <!-- Hard Skills -->
+                <span class="skill-tag" data-type="hard">Microsoft Office</span>
+                <span class="skill-tag" data-type="hard">Google Workspace</span>
+                <span class="skill-tag" data-type="hard">Administrasi Dokumen</span>
+                <span class="skill-tag" data-type="hard">Analisis Finansial</span>
+                <span class="skill-tag" data-type="hard">Pergudangan</span>
+                <span class="skill-tag" data-type="hard">Google Analytics</span>
+                <!-- Soft Skills -->
+                <span class="skill-tag" data-type="soft">Kepemimpinan</span>
+                <span class="skill-tag" data-type="soft">Komunikasi Publik</span>
+                <span class="skill-tag" data-type="soft">Manajemen Waktu</span>
+                <span class="skill-tag" data-type="soft">Ketelitian</span>
+                <span class="skill-tag" data-type="soft">Cepat Belajar</span>
+            </div>
+        </div>
+
+        <!-- Certifications Grid -->
+        <div class="cert-grid">
+            <div class="cert-item" onclick="showModal('Google Analytics', 'Sertifikasi resmi dari Google yang memvalidasi kemampuan dalam pelacakan data web, analisis audiens, dan interpretasi metrik digital untuk pertumbuhan bisnis. Berlaku hingga 2027.')">
+                <span class="cert-year">2026</span>
+                <div class="card-title" style="font-size: 0.9rem;">Google Analytics</div>
+            </div>
+            <div class="cert-item" onclick="showModal('Emotional Intelligence', 'Diterbitkan oleh GNIK & Kemnaker RI dengan Nilai 90. Fokus pada kecerdasan emosional di lingkungan kerja, empati, dan manajemen diri.')">
+                <span class="cert-year">2026</span>
+                <div class="card-title" style="font-size: 0.9rem;">Emotional Intelligence</div>
+            </div>
+            <div class="cert-item" onclick="showModal('Admin Pergudangan', 'Sertifikasi BPVP Sidoarjo (Kemnaker). Kompetensi dalam mengelola dokumentasi penerimaan, pengeluaran, dan perhitungan persediaan barang.')">
+                <span class="cert-year">2026</span>
+                <div class="card-title" style="font-size: 0.9rem;">Admin Pergudangan</div>
+            </div>
+            <div class="cert-item" onclick="showModal('Customer Experience', 'HP LIFE Certification. Fokus pada strategi Customer Centricity, pemetaan perjalanan pelanggan, dan kepuasan konsumen untuk kesuksesan bisnis.')">
+                <span class="cert-year">2026</span>
+                <div class="card-title" style="font-size: 0.9rem;">Customer Experience</div>
+            </div>
+        </div>
     </div>
 
-    <!-- Modal Pop-up -->
-    <div id="certModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300 scale-95">
-        <div class="absolute inset-0 bg-obsidian/90 backdrop-blur-sm" onclick="closeModal()"></div>
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-[2.5rem] p-8 md:p-12 relative z-10 shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors">
-                <i class="fa-solid fa-circle-xmark text-3xl"></i>
-            </button>
-            
-            <div id="modalContent">
-                <!-- Content injected via JS -->
-            </div>
-            
-            <div class="mt-8 pt-6 border-t border-slate-800 flex justify-end">
-                <button onclick="closeModal()" class="px-8 py-3 bg-white text-black font-bold rounded-2xl hover:bg-gold-400 transition-all text-sm">Tutup</button>
-            </div>
+    <!-- Modal Element -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContent">
+            <button class="close-modal" onclick="closeModal()">✕</button>
+            <span class="tag" id="modalTag">Detail Sertifikasi</span>
+            <h2 id="modalTitle" style="margin: 1rem 0;"></h2>
+            <p id="modalDescription" style="color: var(--text-muted); font-size: 0.95rem;"></p>
         </div>
     </div>
 
     <script>
-        // --- Typewriter Effect ---
-        const words = [
-            "Business & UMKM Owner",
-            "Financial & Data Analyst",
-            "Certified Digital Marketer"
-        ];
-        let i = 0;
-        let j = 0;
-        let currentWord = "";
-        let isDeleting = false;
-        const typeTarget = document.getElementById("typewriter");
-
-        function type() {
-            currentWord = words[i];
-            if (isDeleting) {
-                typeTarget.textContent = currentWord.substring(0, j - 1);
-                j--;
-                if (j === 0) {
-                    isDeleting = false;
-                    i = (i + 1) % words.length;
-                }
-            } else {
-                typeTarget.textContent = currentWord.substring(0, j + 1);
-                j++;
-                if (j === currentWord.length) {
-                    isDeleting = true;
-                    setTimeout(type, 1500); // Pause at end of word
-                    return;
-                }
+        // 1. Typewriter Effect
+        const text = "Business Operations | Financial & Data Analytics | Certified Digital Marketer";
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50);
             }
-            const speed = isDeleting ? 50 : 100;
-            setTimeout(type, speed);
         }
-        type();
+        window.onload = typeWriter;
 
-        // --- Skill Filtering ---
+        // 2. Skill Filter Logic
         function filterSkills(category) {
             const tags = document.querySelectorAll('.skill-tag');
-            const btns = document.querySelectorAll('.skill-btn');
+            const btns = document.querySelectorAll('.filter-btn');
             
-            // Update buttons
-            btns.forEach(btn => {
-                btn.classList.remove('bg-white', 'text-black');
-                btn.classList.add('text-slate-400');
-            });
-            
-            if(category === 'all') document.getElementById('btn-all').classList.add('bg-white', 'text-black');
-            if(category === 'hard') document.getElementById('btn-hard').classList.add('bg-white', 'text-black');
-            if(category === 'soft') document.getElementById('btn-soft').classList.add('bg-white', 'text-black');
+            // Toggle active button
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
-            // Filter tags
             tags.forEach(tag => {
                 tag.style.opacity = '0';
-                tag.style.transform = 'scale(0.8)';
-                
                 setTimeout(() => {
-                    if (category === 'all') {
-                        tag.style.display = 'flex';
-                    } else if (category === 'hard' && tag.classList.contains('hardskill')) {
-                        tag.style.display = 'flex';
-                    } else if (category === 'soft' && tag.classList.contains('softskill')) {
-                        tag.style.display = 'flex';
+                    if (category === 'all' || tag.getAttribute('data-type') === category) {
+                        tag.style.display = 'block';
+                        setTimeout(() => tag.style.opacity = '1', 50);
                     } else {
                         tag.style.display = 'none';
                     }
-                    
-                    setTimeout(() => {
-                        tag.style.opacity = '1';
-                        tag.style.transform = 'scale(1)';
-                    }, 50);
-                }, 300);
+                }, 200);
             });
         }
 
-        // --- Modal Certificate Data ---
-        const certData = {
-            analytics: {
-                title: "Google Analytics & Shopping Ads",
-                issuer: "Google Certification",
-                date: "Berlaku hingga Mei 2027",
-                icon: "fa-brands fa-google text-blue-400",
-                desc: "Memvalidasi kemahiran dalam menggunakan Google Analytics untuk melacak traffic web, serta optimasi kampanye Shopping Ads berbasis AI guna meningkatkan ROI bisnis ritel digital."
-            },
-            ei: {
-                title: "Emotional Intelligence (EI)",
-                issuer: "GNIK & KEMNAKER RI",
-                date: "Lulus Mei 2026 | Nilai: 90",
-                icon: "fa-solid fa-brain text-red-400",
-                desc: "Sertifikasi yang mengakui kemampuan luar biasa dalam manajemen emosi, empati sosial, dan kepemimpinan interpersonal yang kritikal bagi manajemen tim dan pelayanan pelanggan."
-            },
-            warehouse: {
-                title: "Administrasi Pergudangan",
-                issuer: "BPVP Sidoarjo - KEMNAKER RI",
-                date: "Lulus Mei 2026",
-                icon: "fa-solid fa-warehouse text-gold-400",
-                desc: "Keahlian teknis dalam pengelolaan stok, sistem administrasi keluar-masuk barang, dokumentasi logistik, serta prosedur kontrol kualitas di lingkungan operasional pergudangan."
-            },
-            hp: {
-                title: "Customer Experience & Business Email",
-                issuer: "HP LIFE / HP Foundation",
-                date: "Lulus 2026",
-                icon: "fa-solid fa-briefcase text-slate-400",
-                desc: "Program pengembangan keterampilan HP LIFE yang mencakup strategi 'Customer Centric' untuk kesuksesan bisnis dan teknik komunikasi email bisnis yang profesional serta efektif."
-            }
-        };
+        // 3. Modal Logic
+        const overlay = document.getElementById('modalOverlay');
+        const modal = document.getElementById('modalContent');
 
-        function showCert(id) {
-            const data = certData[id];
-            const content = `
-                <div class="w-20 h-20 rounded-3xl bg-slate-800 flex items-center justify-center mb-6">
-                    <i class="${data.icon} text-4xl"></i>
-                </div>
-                <h2 class="text-2xl font-black text-white mb-2">${data.title}</h2>
-                <div class="text-gold-500 font-bold text-xs uppercase tracking-widest mb-6">${data.issuer}</div>
-                <p class="text-slate-400 leading-relaxed text-sm md:text-base mb-4">${data.desc}</p>
-                <div class="inline-block px-4 py-1 bg-slate-800 rounded-full text-[10px] text-slate-300 font-bold border border-slate-700">${data.date}</div>
-            `;
-            document.getElementById('modalContent').innerHTML = content;
-            document.getElementById('certModal').classList.add('modal-active');
-            document.body.style.overflow = 'hidden';
+        function showModal(title, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = desc;
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
         }
 
         function closeModal() {
-            document.getElementById('certModal').classList.remove('modal-active');
-            document.body.style.overflow = 'auto';
+            modal.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
         }
 
-        // Close on Escape key
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+        // Close modal when clicking outside
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeModal();
         });
     </script>
 </body>
